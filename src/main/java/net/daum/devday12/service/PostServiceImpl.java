@@ -3,9 +3,13 @@ package net.daum.devday12.service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -21,20 +25,28 @@ public class PostServiceImpl implements PostService {
 	
 	public Post findPost(String postId) {
 		Post			post =	rawDataService.loadPost(postId);
-		List<Comment>	rawComments =	rawDataService.loadComments(post.getId(), postId);
 		
+		// 멘션 정리하기
+		List<Comment>	rawComments =	rawDataService.loadComments(post.getId(), postId);
+		for(Comment c : rawComments) {
+			Set<String>	mentions =	findMentions(c);
+			c.setMention(new ArrayList<String>(mentions));
+		}
+		
+		// 댓글 맵 생성
 		Map<String, List<Comment>>	commentMap =	new HashMap<String, List<Comment>>();
 		for(Comment c : rawComments) {
-			List<String>	keys =	this.findKeys(c);
-			for(String key : keys) {
+			List<String>	mentions =	c.getMention();
+			for(String mention : mentions) {
 				List<Comment>	commentThread;
-				if(commentMap.containsKey(key)) {
-					commentThread =	commentMap.get(key);
+				if(commentMap.containsKey(mention)) {
+					commentThread =	commentMap.get(mention);
 				} else {
 					commentThread =	new ArrayList<Comment>();
-					commentThread.add(c);
-					commentMap.put(key, commentThread);
+					commentMap.put(mention, commentThread);
 				}
+				
+				commentThread.add(c);
 			}
 		}
 		post.setCommentMap(commentMap);
@@ -48,8 +60,23 @@ public class PostServiceImpl implements PostService {
 	 * @param comment
 	 * @return
 	 */
-	private List<String> findKeys(Comment comment) {
-		return null;
+	private Set<String> findMentions(Comment comment) {
+		String	commentBody =	comment.getBody();
+		Set<String>	set =	new HashSet<String>();
+		
+		String	start =	"<a href='http://me2day.net/";
+		String	end =	"'>";
+		while(commentBody.contains(start)) {
+			int	from =	commentBody.indexOf(start) +start.length();
+			int	to =	commentBody.indexOf(end, from);
+			
+			String	id =	commentBody.substring(from, to);
+			set.add(id);
+			
+			commentBody =	commentBody.substring(to+end.length());
+		}
+		
+		return set;
 	}
 
 	@Override

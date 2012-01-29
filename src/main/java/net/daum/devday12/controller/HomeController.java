@@ -46,7 +46,7 @@ public class HomeController {
 		return "post";
 	}
 	
-	@RequestMapping(value = "/postId/{postId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/postId/{postId}", method = RequestMethod.GET, headers = "Accept=*/*")
 	public @ResponseBody Post findAll(@PathVariable String postId, Model model) {
 		Post	post = postService.findPost(postId);
 		

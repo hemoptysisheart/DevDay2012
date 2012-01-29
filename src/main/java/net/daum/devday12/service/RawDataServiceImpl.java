@@ -1,6 +1,5 @@
 package net.daum.devday12.service;
 
-
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -29,8 +28,69 @@ public class RawDataServiceImpl implements RawDataService {
 
 	@Override
 	public Post loadPost(String postId) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			ArrayList<Post> postInfoList = new ArrayList<Post>();
+			Post postInfo = new Post();
+			String temp = null;
+			
+			String	url =	"http://me2day.net/api/get_posts.xml?post_id="+postId;
+			URL request = new URL(url); 
+			URLConnection connection = request.openConnection();  
+			connection.connect();
+			String xml_data = null ;
+			
+			InputStream is = connection.getInputStream();
+			BufferedReader in =	new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
+			try {
+				
+				byte[] buf = new byte[1024];
+				
+				String nread = null;
+				nread = in.readLine();
+				StringBuffer sb = new StringBuffer();
+				
+				while (nread != null) 
+				{
+					sb.append(nread.trim());
+					nread=in.readLine();
+				}
+				
+				xml_data=sb.toString();
+				
+				System.out.flush();
+			}
+			catch(Exception e)
+			{
+				e.printStackTrace();
+			}
+			
+			finally 
+			{
+				is.close();
+			}
+			
+			InputSource inputsource = new InputSource(new StringReader(xml_data));         
+			Document document = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputsource); 
+			
+			// xpath ��         
+			XPath xpath = XPathFactory.newInstance().newXPath();  
+			
+			NodeList cols1 = (NodeList)xpath.evaluate("//post/body", document, XPathConstants.NODESET);
+			NodeList cols2 = (NodeList)xpath.evaluate("//post/pubDate", document, XPathConstants.NODESET);
+			NodeList cols3 = (NodeList)xpath.evaluate("//post/author/id", document, XPathConstants.NODESET);
+			
+			for( int idx=0; idx<cols1.getLength(); idx++ )
+			{             
+				postInfo.setBody(cols1.item(idx).getTextContent());
+//	  		  	postInfo.pubDate = cols2.item(idx).getTextContent();	// 본문 날짜는 안본다.
+				postInfo.setId(cols3.item(idx).getTextContent());
+				postInfoList.add(postInfo);
+			} 
+			
+			return postInfoList.get(0);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 	@Override
@@ -46,7 +106,7 @@ public class RawDataServiceImpl implements RawDataService {
 			String xml_data = null ;
 			
 			InputStream is = connection.getInputStream();
-			BufferedReader in =	new BufferedReader(new InputStreamReader(connection.getInputStream()));
+			BufferedReader in =	new BufferedReader(new InputStreamReader(connection.getInputStream(), "UTF-8"));
 			try {
 				
 				byte[] buf = new byte[1024];
@@ -84,11 +144,11 @@ public class RawDataServiceImpl implements RawDataService {
 			
 			for( int idx=0; idx<cols1.getLength(); idx++ ) {
 				Comment commentInfo = new Comment();
-				commentInfo.setBody(cols1.item(idx).getTextContent());
+				commentInfo.setBody(cols1.item(idx).getTextContent().trim());
 				// TODO cols2.item(idx).getTextContent()는 String임.
 				commentInfo.setPubDate(new Date());
-				commentInfo.setAuthor(cols3.item(idx).getTextContent());
-				commentInfo.setNickname(cols4.item(idx).getTextContent());
+				commentInfo.setAuthor(cols3.item(idx).getTextContent().trim());
+				commentInfo.setNickname(cols4.item(idx).getTextContent().trim());
 				commentInfoList.add(commentInfo);
 			} 
 			
