@@ -27,7 +27,14 @@ public class PostServiceImpl implements PostService {
 		for(Comment c : rawComments) {
 			List<String>	keys =	this.findKeys(c);
 			for(String key : keys) {
-				
+				List<Comment>	commentThread;
+				if(commentMap.containsKey(key)) {
+					commentThread =	commentMap.get(key);
+				} else {
+					commentThread =	new ArrayList<Comment>();
+					commentThread.add(c);
+					commentMap.put(key, commentThread);
+				}
 			}
 		}
 		post.setCommentMap(commentMap);

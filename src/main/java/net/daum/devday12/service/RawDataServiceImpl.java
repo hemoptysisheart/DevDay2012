@@ -37,7 +37,6 @@ public class RawDataServiceImpl implements RawDataService {
 	public List<Comment> loadComments(String id, String postId) {
 		try {
 			ArrayList<Comment> commentInfoList = new ArrayList<Comment>();
-			Comment commentInfo = new Comment();
 			String temp = null;
 			
 			String	url =	"http://me2day.net/api/get_comments/"+id+".xml?post_id="+postId;
@@ -65,14 +64,9 @@ public class RawDataServiceImpl implements RawDataService {
 				xml_data=sb.toString();
 				
 				System.out.flush();
-			}
-			catch(Exception e)
-			{
+			} catch(Exception e) {
 				e.printStackTrace();
-			}
-			
-			finally 
-			{
+			} finally{
 				is.close();
 			}
 			
@@ -84,12 +78,12 @@ public class RawDataServiceImpl implements RawDataService {
 			
 			// NodeList �������� : row �Ʒ��� �ִ� ��� col1 �� ����        
 			NodeList cols1 = (NodeList)xpath.evaluate("//comment/body", document, XPathConstants.NODESET);
-			NodeList cols2 = (NodeList)xpath.evaluate("//comment/pubDate", document, XPathConstants.NODESET);
+//			NodeList cols2 = (NodeList)xpath.evaluate("//comment/pubDate", document, XPathConstants.NODESET);
 			NodeList cols3 = (NodeList)xpath.evaluate("//comment/author/id", document, XPathConstants.NODESET);
 			NodeList cols4 = (NodeList)xpath.evaluate("//comment/author/nickname", document, XPathConstants.NODESET);
 			
-			for( int idx=0; idx<cols1.getLength(); idx++ )
-			{             
+			for( int idx=0; idx<cols1.getLength(); idx++ ) {
+				Comment commentInfo = new Comment();
 				commentInfo.setBody(cols1.item(idx).getTextContent());
 				// TODO cols2.item(idx).getTextContent()는 String임.
 				commentInfo.setPubDate(new Date());
