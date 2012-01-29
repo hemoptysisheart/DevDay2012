@@ -58,7 +58,7 @@ ul {
 
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script id="DragSearchJs" type="text/javascript" src="http://s1.daumcdn.net/img.search/front/js/searchDragSelection.js?nil_ch=tistory" charset="euc-kr"></script>
+<!-- <script id="DragSearchJs" type="text/javascript" src="http://s1.daumcdn.net/img.search/front/js/searchDragSelection.js?nil_ch=tistory" charset="euc-kr"></script>-->
 </head>
 
 <body>
@@ -69,7 +69,7 @@ ul {
 				<a class="brand" href="#">me2day 댓글 글타래</a>
 				<ul class="nav">
 					<li><span class="label notice">postId 입력</span> <input id="postId"
-						type="text" value="" /></li>
+						type="text" value="pyqh71a-weub" /></li>
 				</ul>
 				<p class="pull-right">
 					<a href="#" id="nickname">username</a><span class="label notice"> 의 미투데이</span>
@@ -154,7 +154,6 @@ ul {
 			if (postId == '') {
 				return;
 			}
-			console.log(postId);
 			
 			$.getJSON('/postId/' + postId, function(data) {
 				var items = [];
@@ -238,16 +237,19 @@ ul {
 		}
 		
 		$(document).ready(function() {
-			$('.inline').focus(function() {
-				var userSelection;
-				if (window.getSelection) {
-					userSelection = window.getSelection();
-				}
-				else if (document.selection) { // should come last; Opera!
-					userSelection = document.selection.createRange();
-					alert(userSelection);
-				}
-			});
+			request();
+		});
+		
+		$('.inline').dblclick(function() {
+			var userSelection = null;
+			if (window.getSelection) {
+				userSelection = window.getSelection();
+			}
+			else if (document.selection) { // should come last; Opera!
+				userSelection = document.selection.createRange();
+			}
+			
+			alert(userSelection);
 		});
 		
 	</script>
