@@ -75,10 +75,6 @@ public class PostServiceImpl implements PostService {
 		c1.setPubDate(new Date());
 		l1.add(c1);
 		
-		try {
-			Thread.sleep(10 +new Random().nextInt(1000));
-		} catch (InterruptedException e) { }
-		
 		Comment	c2 =	new Comment();
 		c2.setAuthor("id2");
 		c2.setBody("아싸 2등!");
@@ -86,19 +82,11 @@ public class PostServiceImpl implements PostService {
 		c2.setPubDate(new Date());
 		l2.add(c2);
 		
-		try {
-			Thread.sleep(10 +new Random().nextInt(1000));
-		} catch (InterruptedException e) { }
-		
 		Comment	c3 =	new Comment();
 		c3.setAuthor("id3");
 		c3.setBody("내가 1등!");
 		c3.setPubDate(new Date());
 		l3.add(c3);
-		
-		try {
-			Thread.sleep(100 +new Random().nextInt(500));
-		} catch (InterruptedException e) { }
 		
 		Comment	c4 =	new Comment();
 		c4.setAuthor("id3");
@@ -109,10 +97,6 @@ public class PostServiceImpl implements PostService {
 		c4.setPubDate(new Date());
 		l3.add(c4);
 		l1.add(c4);
-		
-		try {
-			Thread.sleep(100 +new Random().nextInt(1000));
-		} catch (InterruptedException e) { }
 		
 		Comment c5 =	new Comment();
 		c5.setAuthor("origin");
@@ -127,10 +111,6 @@ public class PostServiceImpl implements PostService {
 		l2.add(c5);
 		l3.add(c5);
 		
-		try {
-			Thread.sleep(100 +new Random().nextInt(500));
-		} catch (InterruptedException e) { }
-		
 		Comment	c6 =	new Comment();
 		c6.setAuthor("id2");
 		c6.setBody("<a href='http://me2day.net/origin'>작성자</a> 놀아요!");
@@ -139,10 +119,6 @@ public class PostServiceImpl implements PostService {
 		c6.setMention(m6);
 		c6.setPubDate(new Date());
 		l2.add(c6);
-		
-		try {
-			Thread.sleep(100 +new Random().nextInt(100));
-		} catch (InterruptedException e) { }
 		
 		Comment	c7 =	new Comment();
 		c7.setAuthor("id3");
@@ -153,10 +129,6 @@ public class PostServiceImpl implements PostService {
 		c7.setPubDate(new Date());
 		l3.add(c7);
 		l4.add(c7);
-		
-		try {
-			Thread.sleep(100 +new Random().nextInt(500));
-		} catch (InterruptedException e) { }
 		
 		Comment	c8 =	new Comment();
 		c8.setAuthor("id4");
