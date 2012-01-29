@@ -63,6 +63,10 @@ public class PostServiceImpl implements PostService {
 		List<Comment>	l3 =	new ArrayList<Comment>();
 		List<Comment>	l4 =	new ArrayList<Comment>();
 		
+		commentMap.put("id1", l1);
+		commentMap.put("id2", l2);
+		commentMap.put("id3", l3);
+		commentMap.put("id4", l4);
 		
 		Comment	c1 =	new Comment();
 		c1.setAuthor("id1");
