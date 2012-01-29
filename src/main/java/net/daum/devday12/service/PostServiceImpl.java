@@ -75,6 +75,9 @@ public class PostServiceImpl implements PostService {
 			
 			commentBody =	commentBody.substring(to+end.length());
 		}
+		if( ! set.contains(comment.getAuthor())) {
+			set.add(comment.getAuthor());
+		}
 		
 		return set;
 	}
