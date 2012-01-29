@@ -103,6 +103,9 @@ public class PostServiceImpl implements PostService {
 		Comment	c4 =	new Comment();
 		c4.setAuthor("id3");
 		c4.setBody("<a href='http://me2day.net/id1'>ID1</a> 아니잖아!");
+		List<String>	m4 =	new ArrayList<String>();
+		m4.add("id1");
+		c4.setMention(m4);
 		c4.setPubDate(new Date());
 		l3.add(c4);
 		l1.add(c4);
@@ -114,6 +117,11 @@ public class PostServiceImpl implements PostService {
 		Comment c5 =	new Comment();
 		c5.setAuthor("origin");
 		c5.setBody("<a href='http://me2day.net/id1'>ID1</a>, <a href='http://me2day.net/id2'>ID2</a>, <a href='http://me2day.net/id3'>ID3</a> 이게 뭐하는 짓이야?");
+		List<String>	m5 =	new ArrayList<String>();
+		m5.add("id1");
+		m5.add("id2");
+		m5.add("id3");
+		c5.setMention(m5);
 		c5.setPubDate(new Date());
 		l1.add(c5);
 		l2.add(c5);
@@ -126,6 +134,9 @@ public class PostServiceImpl implements PostService {
 		Comment	c6 =	new Comment();
 		c6.setAuthor("id2");
 		c6.setBody("<a href='http://me2day.net/origin'>작성자</a> 놀아요!");
+		List<String>	m6 =	new ArrayList<String>();
+		m6.add("origin");
+		c6.setMention(m6);
 		c6.setPubDate(new Date());
 		l2.add(c6);
 		
@@ -136,6 +147,9 @@ public class PostServiceImpl implements PostService {
 		Comment	c7 =	new Comment();
 		c7.setAuthor("id3");
 		c7.setBody("<a href='http://me2day.net/id4'>ID4</a> 뭐하냐?");
+		List<String>	m7 =	new ArrayList<String>();
+		m7.add("id4");
+		c7.setMention(m7);
 		c7.setPubDate(new Date());
 		l3.add(c7);
 		l4.add(c7);
@@ -147,8 +161,12 @@ public class PostServiceImpl implements PostService {
 		Comment	c8 =	new Comment();
 		c8.setAuthor("id4");
 		c8.setBody("<a href='http://me2day.net/id3'>ID3</a> 잤다!");
+		List<String>	m8 =	new ArrayList<String>();
+		m8.add("id3");
+		c8.setMention(m8);
 		c8.setPubDate(new Date());
 		l4.add(c8);
+		l3.add(c8);
 		
 		return commentMap;
 	}
