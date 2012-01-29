@@ -2,11 +2,10 @@ package net.daum.devday12.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
-import net.daum.devday12.domain.Comment;
-import net.daum.devday12.service.CommentService;
+import net.daum.devday12.domain.Post;
+import net.daum.devday12.service.PostService;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +26,8 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@Autowired
-	private CommentService commentService;
+	private PostService postService;
+	
 	
 	/**
 	 * Simply selects the home view to render by returning its name.
@@ -47,9 +47,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/postId/{postId}", method = RequestMethod.GET)
-	public @ResponseBody List<Comment> findAll(@PathVariable String postId, Model model) {
-		List<Comment> comments = commentService.findAll(postId);
-		return comments;
+	public @ResponseBody Post findAll(@PathVariable String postId, Model model) {
+		
+		
+		Post	post = postService.findPost(postId);
+		
+		
+		return post;
 	}
 	
 }

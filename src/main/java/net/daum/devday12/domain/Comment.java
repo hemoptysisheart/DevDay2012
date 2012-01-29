@@ -34,8 +34,6 @@ public class Comment {
 	public void setMention(List<String> mention) {
 		this.mention = mention;
 	}
-	
-	@Override
 	public String toString() {
 		return "Comment [author=" + author + ", body=" + body + ", pubDate="
 				+ pubDate + ", mention=" + mention + "]";
