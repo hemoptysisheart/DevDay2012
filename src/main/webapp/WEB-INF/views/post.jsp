@@ -18,6 +18,7 @@
 <style type="text/css">
 body {
 	padding-top: 60px;
+	background: #39414A;
 }
 
 ul {
@@ -30,8 +31,10 @@ ul {
 }
 
 .outline {
-	background: #f0f0f0;
-	border: 1px solid whiteSmoke;
+	background: #181C21;
+	border: 1px solid black;
+	-webkit-border-radius: 6px;
+	border-radius: 6px;
 	margin: 0px;
 	padding: 20px;
 }
@@ -55,6 +58,7 @@ ul {
 
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script id="DragSearchJs" type="text/javascript" src="http://s1.daumcdn.net/img.search/front/js/searchDragSelection.js?nil_ch=tistory" charset="euc-kr"></script>
 </head>
 
 <body>
@@ -64,11 +68,11 @@ ul {
 			<div class="container-fluid">
 				<a class="brand" href="#">me2day 댓글 글타래</a>
 				<ul class="nav">
-					<li><label for="postId">postId 입력</label> <input id="postId"
+					<li><span class="label notice">postId 입력</span> <input id="postId"
 						type="text" value="" /></li>
 				</ul>
 				<p class="pull-right">
-					<a href="#" id="nickname">username</a> 의 미투데이
+					<a href="#" id="nickname">username</a><span class="label notice"> 의 미투데이</span>
 				</p>
 			</div>
 		</div>
@@ -137,7 +141,13 @@ ul {
 			$(elem).next().toggle();
 		}
 		
-		$(document).ready(function() {
+		$('#postId').keypress(function(e) {
+	      if(e.which == 13) {
+				request();
+			}
+		});
+		
+		function request() {
 			var postId = $('#postId').val();
 			if (postId == '') {
 				postId = 'dummy';
@@ -223,7 +233,12 @@ ul {
 				*/
 			});
 
+		}
+		
+		$(document).ready(function() {
+			request();
 		});
+		
 	</script>
 </body>
 </html>
