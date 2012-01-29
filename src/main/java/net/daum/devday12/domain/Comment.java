@@ -6,6 +6,7 @@ import java.util.List;
 public class Comment {
 	
 	String author;
+	String	nickname;
 	String body;
 	Date pubDate;
 	List<String> mention;
@@ -15,6 +16,12 @@ public class Comment {
 	}
 	public void setAuthor(String author) {
 		this.author = author;
+	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
 	}
 	public String getBody() {
 		return body;

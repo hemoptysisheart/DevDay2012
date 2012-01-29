@@ -76,7 +76,7 @@ public class PostServiceImpl implements PostService {
 		l1.add(c1);
 		
 		try {
-			Thread.sleep(1000 +new Random().nextInt(10000));
+			Thread.sleep(10 +new Random().nextInt(1000));
 		} catch (InterruptedException e) { }
 		
 		Comment	c2 =	new Comment();
@@ -87,7 +87,7 @@ public class PostServiceImpl implements PostService {
 		l2.add(c2);
 		
 		try {
-			Thread.sleep(1000 +new Random().nextInt(10000));
+			Thread.sleep(10 +new Random().nextInt(1000));
 		} catch (InterruptedException e) { }
 		
 		Comment	c3 =	new Comment();
@@ -97,7 +97,7 @@ public class PostServiceImpl implements PostService {
 		l3.add(c3);
 		
 		try {
-			Thread.sleep(1000 +new Random().nextInt(10000));
+			Thread.sleep(100 +new Random().nextInt(500));
 		} catch (InterruptedException e) { }
 		
 		Comment	c4 =	new Comment();
@@ -111,7 +111,7 @@ public class PostServiceImpl implements PostService {
 		l1.add(c4);
 		
 		try {
-			Thread.sleep(1000 +new Random().nextInt(10000));
+			Thread.sleep(100 +new Random().nextInt(1000));
 		} catch (InterruptedException e) { }
 		
 		Comment c5 =	new Comment();
@@ -128,7 +128,7 @@ public class PostServiceImpl implements PostService {
 		l3.add(c5);
 		
 		try {
-			Thread.sleep(1000 +new Random().nextInt(10000));
+			Thread.sleep(100 +new Random().nextInt(500));
 		} catch (InterruptedException e) { }
 		
 		Comment	c6 =	new Comment();
@@ -141,7 +141,7 @@ public class PostServiceImpl implements PostService {
 		l2.add(c6);
 		
 		try {
-			Thread.sleep(1000 +new Random().nextInt(10000));
+			Thread.sleep(100 +new Random().nextInt(100));
 		} catch (InterruptedException e) { }
 		
 		Comment	c7 =	new Comment();
@@ -155,7 +155,7 @@ public class PostServiceImpl implements PostService {
 		l4.add(c7);
 		
 		try {
-			Thread.sleep(1000 +new Random().nextInt(10000));
+			Thread.sleep(100 +new Random().nextInt(500));
 		} catch (InterruptedException e) { }
 		
 		Comment	c8 =	new Comment();
