@@ -7,7 +7,6 @@ public class Post {
 	private String	id;
 	private String	nickname;
 	private String	body;
-	private List<Comment>	comments;
 	private Map<String, List<Comment>>	commentMap;
 	
 	public String getId() {
@@ -27,12 +26,6 @@ public class Post {
 	}
 	public void setBody(String body) {
 		this.body = body;
-	}
-	public List<Comment> getComments() {
-		return comments;
-	}
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
 	}
 	public Map<String, List<Comment>> getCommentMap() {
 		return commentMap;

@@ -48,8 +48,6 @@ public class HomeController {
 	
 	@RequestMapping(value = "/postId/{postId}", method = RequestMethod.GET)
 	public @ResponseBody Post findAll(@PathVariable String postId, Model model) {
-		
-		
 		Post	post = postService.findPost(postId);
 		
 		
