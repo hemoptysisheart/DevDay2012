@@ -80,7 +80,8 @@ ul {
 
 	<div class="container-fluid">
 		<div class="sidebar">
-			<div class="well"></div>
+			<div class="well search_result">
+			</div>
 		</div>
 		<div class="content">
 			<!-- Main hero unit for a primary marketing message or call to action -->
@@ -138,7 +139,7 @@ ul {
 		</div>
 	</div>
 	<script type="text/javascript">
-	
+    
 		function toggle(elem) {
 			$(elem).next().toggle();
 		}
@@ -172,11 +173,14 @@ ul {
 							var nickname = val[Object.keys(val)[i]][0].nickname;
 							var body = val[Object.keys(val)[i]][0].body;
 							
+							var dt = new Date(val[Object.keys(val)[i]][0].pubDate*1000);
+					        var pubDate = dt.getHours() + ' 시' + dt.getMinutes() + ' 분';
+							
 							var tmp = '<li>';
 							tmp += '<div class="outline" onclick="toggle(this)">';
 							
 							tmp += '<span class="label">'+nickname+'</span><br/>';
-							tmp += '<span class="body">'+body+'</span><font class="pubDate"></font><span class="mention"></span>';
+							tmp += '<span class="body">'+body+'</span><font class="pubDate"> '+pubDate+'</font><span class="mention"></span>';
 							tmp += '</div>';
 							
 							if (val[Object.keys(val)[i]].length > 1) {
@@ -187,9 +191,11 @@ ul {
 									var author = val[Object.keys(val)[i]][j].author;
 									var nickname = val[Object.keys(val)[i]][j].nickname;
 									var body = val[Object.keys(val)[i]][j].body;
+									var dt = new Date(val[Object.keys(val)[i]][j].pubDate*1000);
+							        var pubDate = dt.getHours() + ' 시' + dt.getMinutes() + ' 분';
 									
 									tmp += '<li><div class="inline"><span class="label">'
-									+nickname+'</span><br/><span class="body">'+body+'</span><font class="pubDate"></font><span class="mention"></span></div></li>';
+									+nickname+'</span><br/><span class="body">'+body+'</span><font class="pubDate"> '+pubDate+'</font><span class="mention"></span></div></li>';
 								}
 								tmp += '</ul>';
 								$('#comments').append(tmp);
@@ -237,19 +243,44 @@ ul {
 		}
 		
 		$(document).ready(function() {
-			request();
-		});
-		
-		$('.inline').dblclick(function() {
-			var userSelection = null;
-			if (window.getSelection) {
-				userSelection = window.getSelection();
-			}
-			else if (document.selection) { // should come last; Opera!
-				userSelection = document.selection.createRange();
-			}
 			
-			alert(userSelection);
+			/*
+			document.onmouseup = function() {
+				var userSelection = null;
+				if (window.getSelection) {
+					userSelection = window.getSelection();
+				}
+				else if (document.selection) { // should come last; Opera!
+					userSelection = document.selection.createRange();
+				}
+				text = (document.all) ? document.selection.createRange().text : document.getSelection();
+				console.log(text);
+				if (text != '') {
+					
+					$.ajax('/search?q='+text, function(data) {
+						$.each(data, function(key, val) {
+							$('search_result').append('<ul><li>');
+							if (key == 'title') {
+								$('search_result').append('<span>'+title+'</span>');
+							}
+							if (key == 'link') {
+								$('search_result').append('<span>'+link+'</span>');						
+							}
+							if (key == 'description') {
+								$('search_result').append('<span>'+description+'</span>');
+							}
+							$('search_result').append('</li></ul>');
+						});
+					});
+					
+				}
+				
+				
+			};
+			if (!document.all) document.captureEvents(Event.MOUSEUP);
+			*/
+			
+			request();
 		});
 		
 	</script>
