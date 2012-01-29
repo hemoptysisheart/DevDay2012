@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import net.daum.devday12.domain.Comment;
 import net.daum.devday12.domain.Post;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class PostServiceImpl implements PostService {
 	@Autowired
 	private RawDataService	rawDataService;

@@ -2,9 +2,12 @@ package net.daum.devday12.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import net.daum.devday12.domain.Comment;
 import net.daum.devday12.domain.Post;
 
+@Component
 public class RawDataServiceImpl implements RawDataService {
 
 	@Override
