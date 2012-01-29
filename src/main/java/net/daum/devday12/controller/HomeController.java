@@ -48,7 +48,7 @@ public class HomeController {
 	
 	@RequestMapping(value = "/postId/{postId}", method = RequestMethod.GET, headers = "Accept=*/*")
 	public @ResponseBody Post findAll(@PathVariable String postId, Model model) {
-		Post	post = postService.dummyPost(postId);
+		Post	post = postService.findPost(postId);
 		
 		return post;
 	}

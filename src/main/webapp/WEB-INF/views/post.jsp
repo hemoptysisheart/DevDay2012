@@ -85,8 +85,8 @@ ul {
 		<div class="content">
 			<!-- Main hero unit for a primary marketing message or call to action -->
 			<div class="hero-unit">
-				<h1 id="body">댓글 놀이해보아요~</h1>
-				<p>1등은...</p>
+				<h1 id="body"></h1>
+				<p></p>
 				<!-- 
 				<p>
 					<a class="btn primary large">Learn more &raquo;</a>
@@ -96,6 +96,7 @@ ul {
 			<!-- Example row of columns -->
 			<div class="row">
 				<ul id="comments">
+				<!-- 
 					<li>
 						<div class="outline" onclick="toggle(this)">
 							<span class="label">Bryan</span> <br /> <span class="body">일등</span>
@@ -131,6 +132,7 @@ ul {
 						</div>
 
 					</li>
+				 -->
 				</ul>
 			</div>
 		</div>
@@ -150,7 +152,7 @@ ul {
 		function request() {
 			var postId = $('#postId').val();
 			if (postId == '') {
-				postId = 'dummy';
+				return;
 			}
 			console.log(postId);
 			
@@ -236,7 +238,16 @@ ul {
 		}
 		
 		$(document).ready(function() {
-			request();
+			$('.inline').focus(function() {
+				var userSelection;
+				if (window.getSelection) {
+					userSelection = window.getSelection();
+				}
+				else if (document.selection) { // should come last; Opera!
+					userSelection = document.selection.createRange();
+					alert(userSelection);
+				}
+			});
 		});
 		
 	</script>
