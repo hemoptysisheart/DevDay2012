@@ -1,8 +1,11 @@
 package net.daum.devday12.service;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -45,8 +48,8 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public Post dummyPost(String postId) {
 		Post	post =	new Post();
-		post.setId("purplekat");
-		post.setNickname("호란");
+		post.setId("origin");
+		post.setNickname("작성자");
 		post.setBody("'그거 뭐야? 좀 줘봐봐.'");
 		post.setCommentMap(this.dummyCommentMap());
 		
@@ -55,11 +58,93 @@ public class PostServiceImpl implements PostService {
 	
 	private Map<String, List<Comment>> dummyCommentMap() {
 		Map<String, List<Comment>>	commentMap =	new HashMap<String, List<Comment>>();
+		List<Comment>	l1 =	new ArrayList<Comment>();
+		List<Comment>	l2 =	new ArrayList<Comment>();
+		List<Comment>	l3 =	new ArrayList<Comment>();
+		List<Comment>	l4 =	new ArrayList<Comment>();
 		
-		Comment	c =	new Comment();
-		c.setAuthor("green0721kr");
-		c.setBody("으잌ㅋㅋㅋ");
 		
+		Comment	c1 =	new Comment();
+		c1.setAuthor("id1");
+		c1.setBody("아싸 1등!");
+		c1.setMention(new ArrayList<String>());
+		c1.setPubDate(new Date());
+		l1.add(c1);
+		
+		try {
+			Thread.sleep(1000 +new Random().nextInt(10000));
+		} catch (InterruptedException e) { }
+		
+		Comment	c2 =	new Comment();
+		c2.setAuthor("id2");
+		c2.setBody("아싸 2등!");
+		c2.setMention(new ArrayList<String>());
+		c2.setPubDate(new Date());
+		l2.add(c2);
+		
+		try {
+			Thread.sleep(1000 +new Random().nextInt(10000));
+		} catch (InterruptedException e) { }
+		
+		Comment	c3 =	new Comment();
+		c3.setAuthor("id3");
+		c3.setBody("내가 1등!");
+		c3.setPubDate(new Date());
+		l3.add(c3);
+		
+		try {
+			Thread.sleep(1000 +new Random().nextInt(10000));
+		} catch (InterruptedException e) { }
+		
+		Comment	c4 =	new Comment();
+		c4.setAuthor("id3");
+		c4.setBody("<a href='http://me2day.net/id1'>ID1</a> 아니잖아!");
+		c4.setPubDate(new Date());
+		l3.add(c4);
+		l1.add(c4);
+		
+		try {
+			Thread.sleep(1000 +new Random().nextInt(10000));
+		} catch (InterruptedException e) { }
+		
+		Comment c5 =	new Comment();
+		c5.setAuthor("origin");
+		c5.setBody("<a href='http://me2day.net/id1'>ID1</a>, <a href='http://me2day.net/id2'>ID2</a>, <a href='http://me2day.net/id3'>ID3</a> 이게 뭐하는 짓이야?");
+		c5.setPubDate(new Date());
+		l1.add(c5);
+		l2.add(c5);
+		l3.add(c5);
+		
+		try {
+			Thread.sleep(1000 +new Random().nextInt(10000));
+		} catch (InterruptedException e) { }
+		
+		Comment	c6 =	new Comment();
+		c6.setAuthor("id2");
+		c6.setBody("<a href='http://me2day.net/origin'>작성자</a> 놀아요!");
+		c6.setPubDate(new Date());
+		l2.add(c6);
+		
+		try {
+			Thread.sleep(1000 +new Random().nextInt(10000));
+		} catch (InterruptedException e) { }
+		
+		Comment	c7 =	new Comment();
+		c7.setAuthor("id3");
+		c7.setBody("<a href='http://me2day.net/id4'>ID4</a> 뭐하냐?");
+		c7.setPubDate(new Date());
+		l3.add(c7);
+		l4.add(c7);
+		
+		try {
+			Thread.sleep(1000 +new Random().nextInt(10000));
+		} catch (InterruptedException e) { }
+		
+		Comment	c8 =	new Comment();
+		c8.setAuthor("id4");
+		c8.setBody("<a href='http://me2day.net/id3'>ID3</a> 잤다!");
+		c8.setPubDate(new Date());
+		l4.add(c8);
 		
 		return commentMap;
 	}
