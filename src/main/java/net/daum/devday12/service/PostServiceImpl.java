@@ -1,10 +1,10 @@
 package net.daum.devday12.service;
 
+import java.util.List;
+
+import net.daum.devday12.domain.Comment;
 import net.daum.devday12.domain.Post;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class PostServiceImpl implements PostService {
 
 	public Post findPost(String postId) {
