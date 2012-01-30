@@ -157,6 +157,7 @@ ul {
 			}
 			
 			$.getJSON('/postId/' + postId, function(data) {
+				$('#comments').html('');
 				var items = [];
 
 				$.each(data, function(key, val) {
