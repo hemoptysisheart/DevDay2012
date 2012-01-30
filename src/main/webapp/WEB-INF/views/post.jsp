@@ -58,7 +58,7 @@ ul {
 
 <script type="text/javascript"
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<!-- <script id="DragSearchJs" type="text/javascript" src="http://s1.daumcdn.net/img.search/front/js/searchDragSelection.js?nil_ch=tistory" charset="euc-kr"></script>-->
+<script id="DragSearchJs" type="text/javascript" src="http://s1.daumcdn.net/img.search/front/js/searchDragSelection.js?nil_ch=tistory" charset="euc-kr"></script>
 </head>
 
 <body>
